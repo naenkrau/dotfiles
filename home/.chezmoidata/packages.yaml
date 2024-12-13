@@ -1,0 +1,54 @@
+packages:
+  darwin:
+    taps:
+    brews:
+      - 'bat' # replaces `cat`, `less`
+      - 'bottom' # replaces `top`
+      - 'cheat'
+      - 'chezmoi'
+      - 'cmake'
+      - 'curl'
+      - 'dockutil'
+      - 'gh'
+      - 'git'
+      - 'git-delta'
+      - 'gnupg'
+      - 'hub'
+      - 'jq'
+      - 'jql'
+      - 'lazygit'
+      - 'mas'
+      - 'mise'
+      - 'neovim'
+      - 'ripgrep'
+      - 'sk'
+      - 'xh'
+      - 'xz'
+      - 'yazi'
+      - 'yt-dlp'
+      - 'zoxide'
+    extras:
+      - 'starship'
+    casks:
+      - '1password'
+      - 'google-chrome'
+      - 'raycast'
+      - 'remnote'
+      - 'roon'
+      - 'wezterm'
+    media:
+      taps:
+        - 'homebrew-ffmpeg/ffmpeg'
+      casks:
+        - 'plex-media-server'
+        - 'calibre'
+        - 'xld'
+    gaming:
+      casks:
+        - 'crossover'
+        - 'steam'
+    home:
+      casks:
+        - 'qbittorrent'
+        - 'mullvadvpn'
+        - 'signal'

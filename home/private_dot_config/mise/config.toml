@@ -1,0 +1,5 @@
+[tools]
+node = "latest"
+python = "3.12"
+usage = "latest"
+yarn = "latest"

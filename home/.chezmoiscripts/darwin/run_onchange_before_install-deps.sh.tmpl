@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+set -eufo pipefail
+
+if command -v brew >/dev/null; then
+  exit 0
+fi
+
+if [[ "${arch}" == arm64 ]] && ! [[ -f /Library/Apple/usr/share/rosetta/rosetta ]]; then
+  softwareupdate --install-rosetta --agree-to-license
+fi

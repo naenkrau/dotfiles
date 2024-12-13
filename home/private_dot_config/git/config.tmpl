@@ -1,0 +1,26 @@
+[user]
+name = {{ .name }}
+email = {{ .email }}
+signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAOjxXnpLLSzeGiQoYKh38wFNt98ZbcAN/E+3Cjq/xtA
+
+[commit]
+gpgsign = true
+
+[core]
+pager = delta
+
+[gpg]
+format = ssh
+
+[gpg.ssh]
+{{ if and (eq .password_manager "1password") (eq .chezmoi.os "darwin") -}}
+program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+{{ end }}
+allowedSignersFile = ~/.ssh/allowed_signers
+
+[init]
+defaultBranch = master
+
+[tag]
+gpgsign = true
+

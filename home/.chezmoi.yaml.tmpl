@@ -1,0 +1,42 @@
+{{- $name := promptStringOnce . "name" "Name" -}}
+{{- $email := promptStringOnce . "email" "Email address" -}}
+{{- $location := promptChoiceOnce . "location" "Location" (list "home" "work") "work" -}}
+
+{{- $gaming := promptBoolOnce . "profiles.gaming" "Enable gaming features" false -}}
+{{- $encoding := promptBoolOnce . "profiles.encoding" "Include encoding and production tools and settings" false -}}
+{{- $server := promptBoolOnce . "profiles.server" "Configure device as server" false -}}
+
+{{- $ephemeral := false -}}
+{{- $headless := false -}}
+
+{{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "ubuntu" "vagrant" "vscode") -}}
+{{-   $ephemeral = true -}}
+{{-   $headless = true -}}
+{{- end -}}
+
+age:
+  identity: "~/.config/chezmoi/key.txt"
+  recipient: "age1sjw3qrv272r56zdnm07wus44l92vqm6su2ya5xzn4msk5dk633hqx28n4p"
+
+data:
+  name: {{ $name | quote }}
+  email: {{ $email | quote }}
+  location: {{ $location | quote }}
+  editor: "nvim"
+  password_manager: "1password"
+
+  flags:
+    ephemeral: {{ $ephemeral }}
+{{ if eq .chezmoi.os "darwin" }}
+  homebrew:
+    prefix: "{{ if eq .chezmoi.arch "arm64" }}/opt/homebrew{{ else }}/usr/local{{ end }}"
+{{ end }}
+  profiles:
+    gaming: {{ $gaming }}
+    encoding: {{ $encoding }}
+    server: {{ $server }}
+
+diff:
+  pager: {{ if lookPath "delta" }}"delta"{{ else }}"less -R"{{ end }}
+
+encryption: "age"
